@@ -6,7 +6,7 @@ from discord import app_commands
 from command.solar import Solar
 
 TOKEN = os.getenv("DISCORD_TOKEN")
-CHANNEL = discord.Object(id=1234)  # replace with your channel id
+GUILD_ID = discord.Object(id=1234)  # replace with your guld id
 
 
 class DiscordClient(discord.Client):
@@ -15,8 +15,8 @@ class DiscordClient(discord.Client):
         self.tree = app_commands.CommandTree(self)
 
     async def setup_hook(self):
-        self.tree.copy_global_to(guild=CHANNEL)
-        await self.tree.sync(guild=CHANNEL)
+        self.tree.copy_global_to(guild=GUILD_ID)
+        await self.tree.sync(guild=GUILD_ID)
 
 
 intents = discord.Intents.all()
