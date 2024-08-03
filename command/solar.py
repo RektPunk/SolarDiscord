@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 import os
 import discord
 
@@ -15,7 +15,10 @@ Conversation follow the format '@username: message'. You should return name form
 """
 
 
-def _get_solar_response(input_text: str, chat_history: List[HumanMessage]) -> str:
+def _get_solar_response(
+    input_text: str,
+    chat_history: List[Union[HumanMessage, AIMessage]],
+) -> str:
     llm = ChatUpstage(api_key=API_KEY)
     qa_prompt = ChatPromptTemplate.from_messages(
         [
